@@ -10,11 +10,13 @@ const discountOffers = [
 ];
 const store = new Store(discountOffers);
 
-const log = [];
+let log = "";
 
+/* We test the updateDiscounts by running it over 30 days and concat the results into "log" */
 for (let elapsedDays = 0; elapsedDays < 30; elapsedDays++) {
-  log.push(JSON.stringify(store.updateDiscounts()));
+  log = log.concat(JSON.stringify(store.updateDiscounts()), ",");
 }
+log = log.slice(0, -1);
 
 /* eslint-disable no-console */
 fs.writeFile("output.txt", log, err => {
