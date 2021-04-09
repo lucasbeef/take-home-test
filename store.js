@@ -1,9 +1,6 @@
-const MAX_DISCOUNT_RATE_IN_PERCENT = 50;
+import { getValueWithinBoundaries } from "./utils";
 
-function getValueWithinBoundaries(value, minValue, maxValue) {
-  const ceiledValue = Math.min(value, maxValue);
-  return Math.max(ceiledValue, minValue);
-}
+const MAX_DISCOUNT_RATE_IN_PERCENT = 50;
 
 export class DiscountOffer {
   constructor(partnerName, expiresIn, discountRateInPercent) {
