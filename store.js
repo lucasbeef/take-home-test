@@ -9,35 +9,47 @@ export class DiscountOffer {
     this.discountInPercent = discountRateInPercent;
   }
 
+  updateNaturaliaDiscount() {
+    if (this.expiresIn <= 0) {
+      this.discountInPercent += 2;
+    } else {
+      this.discountInPercent += 1;
+    }
+  }
+
+  updateVintedDiscount() {
+    if (this.expiresIn <= 0) {
+      this.discountInPercent = 0;
+    } else if (this.expiresIn <= 5) {
+      this.discountInPercent += 3;
+    } else if (this.expiresIn <= 10) {
+      this.discountInPercent += 2;
+    }
+  }
+
+  updateBackMarketDiscount() {
+    if (this.expiresIn <= 0) {
+      this.discountInPercent -= 4;
+    } else {
+      this.discountInPercent -= 2;
+    }
+  }
+
   updateDiscount() {
     switch (this.partnerName) {
       case "Naturalia": {
-        if (this.expiresIn <= 0) {
-          this.discountInPercent += 2;
-        } else {
-          this.discountInPercent += 1;
-        }
+        this.updateNaturaliaDiscount();
         break;
       }
       case "Vinted": {
-        if (this.expiresIn <= 0) {
-          this.discountInPercent = 0;
-        } else if (this.expiresIn <= 5) {
-          this.discountInPercent += 3;
-        } else if (this.expiresIn <= 10) {
-          this.discountInPercent += 2;
-        }
+        this.updateVintedDiscount();
         break;
       }
       case "Ilek": {
         break;
       }
       case "BackMarket": {
-        if (this.expiresIn <= 0) {
-          this.discountInPercent -= 4;
-        } else {
-          this.discountInPercent -= 2;
-        }
+        this.updateBackMarketDiscount();
         break;
       }
       default: {
