@@ -35,6 +35,14 @@ export class DiscountOffer {
       case "Ilek": {
         break;
       }
+      case "BackMarket": {
+        if (this.expiresIn <= 0) {
+          this.discountInPercent -= 4;
+        } else {
+          this.discountInPercent -= 2;
+        }
+        break;
+      }
       default: {
         if (this.expiresIn <= 0) {
           this.discountInPercent -= 2;
